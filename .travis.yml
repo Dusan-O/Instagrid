@@ -1,0 +1,6 @@
+language: swift 
+osx_image: xcode10.3
+notifications:
+  email: false
+script:
+  - xcodebuild clean build -scheme Instagrid -project Instagrid.xcodeproj -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=12.4' ONLY_ACTIVE_ARCH=NO
