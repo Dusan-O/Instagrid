@@ -2,17 +2,17 @@
 //  ViewController.swift
 //  Instagrid
 //
-//  Created by Dusan Orescanin on 07/01/2022.
+//  Created by Dusan Orescanin on 27/01/2022.
 //
 
 import UIKit
 
 class ViewController: UIViewController {
     
-    // swipe outlets
+    // SWIPE OUTLETS
     @IBOutlet private weak var swipeToShareStackView: UIStackView!
     @IBOutlet private weak var swipeLabel: UILabel!
-    // Frame ImageView and Button
+    // FRAME IMAGEVIEW AND BUTTON
     @IBOutlet private weak var topLeftImageView: UIImageView!
     @IBOutlet private weak var topLeftButton: UIButton!
     @IBOutlet private weak var topRightImageView: UIImageView!
@@ -21,13 +21,13 @@ class ViewController: UIViewController {
     @IBOutlet private weak var leftDownButton: UIButton!
     @IBOutlet private weak var rightDownImageView: UIImageView!
     @IBOutlet private weak var rightDownButton: UIButton!
-    // photoFrame view
+    // PHOTOFRAME VIEW
     @IBOutlet private weak var photoFrameView: UIView!
     // Frame gridViews and frame selection buttons table
     @IBOutlet private var gridViews: [UIView]!
     @IBOutlet private var frameSelectionButtons: [UIButton]!
     
-    // When the view is about to change viewWillLayoutSubviews get called and activate landscape et portrait changes
+    // VIEWWILLLAYOUTSUBVIEW IS CALLED AND - LANDSCAPE & PORTRAIT CHANGES
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(gestureRecognizer:)))
@@ -44,9 +44,9 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: - Swipe to share method
+    // MARK: - SWIPE UP TO SHARE METHOD
     
-    // This method is use to interact with the swipe to share stack view with a gesture
+    // METHOD INTERRACTION FOR SWIPE UP
     @objc
     private func swipe(gestureRecognizer: UISwipeGestureRecognizer) {
         if UIDevice.current.orientation.isPortrait {
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         }
     }
     
-    /// Get the image from the photoFrameView and share it with an UIActivityViewController
+    /// GET IMAGE FROM PHOTOFRAME AND SHARE IT WITH UIACTIVITYVIEWCONTROLLER
     private func shareImage() {
         let renderer = UIGraphicsImageRenderer(size: self.photoFrameView.bounds.size)
         let imageToShare = renderer.image { ctx in
@@ -80,12 +80,12 @@ class ViewController: UIViewController {
     }
 }
 
-// MARK: - ImagePicker Protocol
+// MARK: - IMAGEPICKER PROTOCOL
 
-// extension of class ViewController comform to UINavigationControllerDelegate protocol
+// EXTENSION OF CLASS VIEWCONTROLLER CONFORM TO UINAVIGATIONCONTROLLDELEGATE PROTOCOL
 extension ViewController: UINavigationControllerDelegate {}
 
-// extension of class ViewController tell us when the user either selected a picture or cancelled the imagePicker
+// EXTENSION OF CLASS VIEWCONTROLLER TELLS WHEN USER SELECT A PIC / CANEL THE IMAGEPICKER
 extension ViewController: UIImagePickerControllerDelegate {
     // This method is use to pick the image and display in a UIImageView
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -106,20 +106,20 @@ extension ViewController: UIImagePickerControllerDelegate {
     }
 }
 
-// Extension of ViewController with my IBAction, actionSheet and frameSelection method
+// EXTENSION OF CLASS VIEWCONTROLLER WITH IBACTION, ACTIONSHEET, FRAMESELECTION METHODS
 private extension ViewController {
-    // This method is use when user select a frame to place an image inside
+    // METHOD WHEN USER SELECT A FRAME
     @IBAction func chooseImage(_ sender: UIButton) {
         buttonTapped(button: sender)
         
-        // Create an imagePicker and provide it a delegate of UIImagePickerController
+        // CREATE IMAGEPICKER & PROVIDE IT A DELEGATE OF UIIMAGEPICKERCONTROLLER
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
-        // Set my actionSheet with UIAlertController
+        // SET ACTIONSHEET WITH UIALERTCONTROLLER
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
         
-        // BONUS SourceType Possibility to choose picture directly from a shoot with the camera (if available)
+        // BONUS SOURCETYPE POSSIBILITY CHOOSE PIC FROM CAMERA (IF AVAILABLE)
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
                 if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -129,22 +129,22 @@ private extension ViewController {
             }))
         }
         
-        // Choose a picture from phone photoLibrary
+        // CHOOSE A PIC FROM PHOTOLIBRARY
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true, completion: nil)
         }))
         
-        // Cancel Action
+        // CANCEL ACTION
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(actionSheet, animated: true, completion: nil)
     }
     
-    // MARK: - Frame selection method
+    // MARK: - SELECTION FRAME METHOD
     
-    //  This method is use to change frame when you tape on a button
+    //  CHANGE THE FRAME METHOD
     @IBAction private func frameSelection(_ sender: UIButton) {
-        frameSelectionButtons.forEach {$0.isSelected = false} // Unselect all Buttons
-        sender.isSelected = true // select the button tapped to make the Nike layer appeared on
+        frameSelectionButtons.forEach {$0.isSelected = false} // UNSELECT
+        sender.isSelected = true // SELECT THE BTN CHEK APPEARS
         
         switch sender.tag {
         case 1:
@@ -159,15 +159,15 @@ private extension ViewController {
         default:
             break;
         }
-        photoFrameView.flashAnimation() // Animate the photoFrameView when select a new frame
+        photoFrameView.flashAnimation() // ANIMATE PHOTOFRAMEVIEW WHEN A NEW FRAME IS SELECTED
     }
     
-    /// This method is use to select the appropriate image view to place your picture
+    /// SELECT THE APPROPRIATE IMAGE VIEW TO PLACE THE PIC METHOD
     func buttonTapped(button: UIButton) {
         button.isSelected = true
     }
     
-    /// This method is use to display an image and set his button transperant
+    /// DISPLAY THE PIC AND SET THE BTN TRANSPARENT METHOD
     func displayImage(image: UIImage, imageView: UIImageView, button: UIButton) {
         imageView.image = image
         button.alpha = 0.02

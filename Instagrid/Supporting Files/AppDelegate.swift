@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Instagrid
 //
-//  Created by Dusan Orescanin on 07/01/2022.
+//  Created by Dusan Orescanin on 27/01/2022.
 //
 
 import UIKit
