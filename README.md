@@ -1,4 +1,4 @@
-# OPENCLASSROOMS : IOS : Project 4 : Instagrid 
+# OPENCLASSROOMS : iOS : Project 4 : Instagrid 
 
 ### A photo editing application.
 
