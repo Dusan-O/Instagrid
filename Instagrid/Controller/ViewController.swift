@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     // SWIPE OUTLETS
     @IBOutlet private weak var swipeToShareStackView: UIStackView!
     @IBOutlet private weak var swipeLabel: UILabel!
+    
     // FRAME IMAGEVIEW AND BUTTON
     @IBOutlet private weak var topLeftImageView: UIImageView!
     @IBOutlet private weak var topLeftButton: UIButton!
@@ -21,9 +22,11 @@ class ViewController: UIViewController {
     @IBOutlet private weak var leftDownButton: UIButton!
     @IBOutlet private weak var rightDownImageView: UIImageView!
     @IBOutlet private weak var rightDownButton: UIButton!
+    
     // PHOTOFRAME VIEW
     @IBOutlet private weak var photoFrameView: UIView!
-    // Frame gridViews and frame selection buttons table
+    
+    // FRAME GRIDVIEWS & FRAME SELECTION BTN TABLE
     @IBOutlet private var gridViews: [UIView]!
     @IBOutlet private var frameSelectionButtons: [UIButton]!
     
@@ -32,12 +35,12 @@ class ViewController: UIViewController {
         super.viewWillLayoutSubviews()
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(gestureRecognizer:)))
         if UIApplication.shared.statusBarOrientation.isLandscape {
-            // activate landscape changes
+            // LANDSCAPE CHANGE
             swipeGesture.direction = .left
             self.swipeToShareStackView.addGestureRecognizer(swipeGesture)
             self.swipeLabel.text = "Swipe left to share"
         } else {
-            // activate portrait changes
+            // PORTRAIT CHANGE
             swipeGesture.direction = .up
             self.swipeToShareStackView.addGestureRecognizer(swipeGesture)
             self.swipeLabel.text = "Swipe up to share"
@@ -87,7 +90,7 @@ extension ViewController: UINavigationControllerDelegate {}
 
 // EXTENSION OF CLASS VIEWCONTROLLER TELLS WHEN USER SELECT A PIC / CANEL THE IMAGEPICKER
 extension ViewController: UIImagePickerControllerDelegate {
-    // This method is use to pick the image and display in a UIImageView
+    // PIC AN IMAGE & DISPLAY IN UIIMAGEVIEW METHOD
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
