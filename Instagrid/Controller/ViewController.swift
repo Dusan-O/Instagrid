@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+     
     // SWIPE OUTLETS
     @IBOutlet private weak var swipeToShareStackView: UIStackView!
     @IBOutlet private weak var swipeLabel: UILabel!
