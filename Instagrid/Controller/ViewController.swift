@@ -170,6 +170,8 @@ private extension ViewController {
         button.isSelected = true
     }
     
+    
+    
     /// DISPLAY THE PIC AND SET THE BTN TRANSPARENT METHOD
     func displayImage(image: UIImage, imageView: UIImageView, button: UIButton) {
         imageView.image = image
