@@ -62,7 +62,7 @@
 		2C16298E22D53DDF006C2867 /* Instagrid */ = {
 			isa = PBXGroup;
 			children = (
-				2F70CCFA27A8463D00B361F8 /* Model */,
+				2F70CCFB27A93F8700B361F8 /* Model */,
 				2C20A6532306130E00A71110 /* Supporting Files */,
 				2C20A651230612D100A71110 /* Controller */,
 				2C20A650230612A500A71110 /* View */,
@@ -109,7 +109,7 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		2F70CCFA27A8463D00B361F8 /* Model */ = {
+		2F70CCFB27A93F8700B361F8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
