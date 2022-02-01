@@ -145,6 +145,8 @@ private extension ViewController {
     // MARK: - SELECTION FRAME METHOD
     
     //  CHANGE THE FRAME METHOD
+    //  CHANGE THE FRAME METHOD
+
     @IBAction private func frameSelection(_ sender: UIButton) {
         frameSelectionButtons.forEach {$0.isSelected = false} // UNSELECT
         sender.isSelected = true // SELECT THE BTN CHEK APPEARS
