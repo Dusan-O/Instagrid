@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - ANIMATIONS
-
+ 
 extension UIView {
     /// ANIMATION TO MAKE MORE FLUID THE TRANSITION BETWEEN DIFFERENT FRAMES
     func flashAnimation() {
