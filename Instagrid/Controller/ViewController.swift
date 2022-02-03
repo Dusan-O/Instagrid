@@ -8,9 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-     
-    private var selectedButton: UIButton? = nil
-    
+         
     // SWIPE OUTLETS
     @IBOutlet private weak var swipeToShareStackView: UIStackView!
     @IBOutlet private weak var swipeLabel: UILabel!
@@ -35,10 +33,10 @@ class ViewController: UIViewController {
     // VIEWWILLLAYOUTSUBVIEW IS CALLED - LANDSCAPE & PORTRAIT CHANGES
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        changeViews()
+        changeSwipeOrientation()
     }
 
-    func changeViews() {
+    func changeSwipeOrientation() {
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(gestureRecognizer:)))
         if UIApplication.shared.statusBarOrientation.isLandscape {
             // LANDSCAPE CHANGE
