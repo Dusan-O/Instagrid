@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
      
+    private var selectedButton: UIButton? = nil
+    
     // SWIPE OUTLETS
     @IBOutlet private weak var swipeToShareStackView: UIStackView!
     @IBOutlet private weak var swipeLabel: UILabel!
@@ -30,9 +32,13 @@ class ViewController: UIViewController {
     @IBOutlet private var gridViews: [UIView]!
     @IBOutlet private var frameSelectionButtons: [UIButton]!
     
-    // VIEWWILLLAYOUTSUBVIEW IS CALLED AND - LANDSCAPE & PORTRAIT CHANGES
+    // VIEWWILLLAYOUTSUBVIEW IS CALLED - LANDSCAPE & PORTRAIT CHANGES
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        changeViews()
+    }
+
+    func changeViews() {
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.swipe(gestureRecognizer:)))
         if UIApplication.shared.statusBarOrientation.isLandscape {
             // LANDSCAPE CHANGE
@@ -52,21 +58,22 @@ class ViewController: UIViewController {
     // METHOD INTERRACTION FOR SWIPE UP
     @objc
     private func swipe(gestureRecognizer: UISwipeGestureRecognizer) {
-        if UIDevice.current.orientation.isPortrait {
-            if gestureRecognizer.direction == .up {
+        if UIDevice.current.orientation.isPortrait { // A VOIR
+            
                 // Animate swipeToShareStackView & photoFrameView by moving it off screen view
                 swipeToShareStackView.animateAndMove(x: 0, y: -self.view.frame.height)
                 photoFrameView.animateAndMove(x: 0, y: -(self.view.frame.height+photoFrameView.frame.height)/2)
                 shareImage()
-            }
+            
         } else if UIDevice.current.orientation.isLandscape {
-            if gestureRecognizer.direction == .left { // swipe direction changed
+             // swipe direction changed
                 swipeToShareStackView.animateAndMove(x: -self.view.frame.width, y: 0)
                 photoFrameView.animateAndMove(x: -(self.view.frame.width+photoFrameView.frame.width)/2, y: 0)
                 shareImage()
             }
-        }
     }
+        
+    
     
     /// GET IMAGE FROM PHOTOFRAME AND SHARE IT WITH UIACTIVITYVIEWCONTROLLER
     private func shareImage() {
@@ -148,7 +155,7 @@ private extension ViewController {
     @IBAction private func frameSelection(_ sender: UIButton) {
         frameSelectionButtons.forEach {$0.isSelected = false} // UNSELECT
         sender.isSelected = true // SELECT THE BTN CHEK APPEARS
-        
+        // SIMPLIFIER - VARIABLE SELECTEDBUTTON, BALEUR DE LA VARIABLE A SENDER
         switch sender.tag {
         case 1:
             gridViews[1].isHidden = true
